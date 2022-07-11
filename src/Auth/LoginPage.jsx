@@ -1,21 +1,24 @@
 import { Grid, TextField, Typography, Button } from "@mui/material"
 import { useForm } from "../hooks/useForm"
 import {useDispatch, useSelector} from 'react-redux'
+import { checkingAuthentication } from "../store/auth/thunks"
+
 
 export const LoginPage = () => {
+
+    const dispatch = useDispatch()
+
+    const {status} = useSelector( state => state.auth)
     
     const {email, password, onInputChange} = useForm({
         email: '',
         password: ''
     })
-
-    const dispatch = useDispatch()
     
     const onSubmit = (e) => {
-        console.log('works')
         e.preventDefault();
-        dispatch(login())
-
+        
+        dispatch(checkingAuthentication())
     }
     
     return (
