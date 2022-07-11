@@ -1,6 +1,22 @@
 import { Grid, TextField, Typography, Button } from "@mui/material"
+import { useForm } from "../hooks/useForm"
+import {useDispatch, useSelector} from 'react-redux'
 
 export const LoginPage = () => {
+    
+    const {email, password, onInputChange} = useForm({
+        email: '',
+        password: ''
+    })
+
+    const dispatch = useDispatch()
+    
+    const onSubmit = (e) => {
+        console.log('works')
+        e.preventDefault();
+        dispatch(login())
+
+    }
     
     return (
 
@@ -26,6 +42,8 @@ export const LoginPage = () => {
                 placeholder="example@gmail.com" 
                 fullWidth 
                 name="email"
+                value={email}
+                onChange={onInputChange}
             />
         </Grid>
         <Grid item xs={12} marginTop={-1}>
@@ -35,6 +53,8 @@ export const LoginPage = () => {
                 placeholder="password" 
                 fullWidth 
                 name="password"
+                value={password}
+                onChange={onInputChange}
             />
         </Grid>
         <Grid item xs={12} marginTop={-1}>
@@ -44,7 +64,7 @@ export const LoginPage = () => {
         </Grid>
 
         <Grid item xs={12}>
-            <Button variant="contained">Login</Button>
+            <Button variant="contained" type="submit" onClick={onSubmit}>Login</Button>
         </Grid>
 
         <Grid item xs={12} >
@@ -54,6 +74,5 @@ export const LoginPage = () => {
             </Typography>
         </Grid>
     </Grid>
-
   )
 }
