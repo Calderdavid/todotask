@@ -1,24 +1,8 @@
-import { Grid, TextField, Typography } from "@mui/material"
-import {useState} from 'react'
+import { Grid } from "@mui/material"
+import { GetTask } from "./components/GetTask"
+
 
 export const Todo = () => {
-
-  const [newTask, setNewTask] = useState("")
-  const [newTasks, setNewTasks] = useState([])
-
-  const handleInputChange = (e) => {
-    setNewTask(e.target.value)
-  }
-
-  const addNewTask = (e) => {
-    const task = e.target.value
-
-    if (e.key === 'Enter') {
-      setNewTasks([...newTasks, task])
-      setNewTask("")
-    }
-
-  }
 
   
   return (
@@ -32,7 +16,7 @@ export const Todo = () => {
     >
     
         <Grid item xs={4}>
-
+          {/* Componente */}
         </Grid>
         
         
@@ -40,26 +24,8 @@ export const Todo = () => {
           xs={8} 
           sx={{mb: 2}}
         >
-            <Typography variant="h2">TodoTask</Typography>
+          <GetTask />
 
-            <TextField
-              type="text"
-              label="Enter a new task"
-              value={newTask}
-              onChange={handleInputChange}
-              onKeyDown={addNewTask}
-            /> 
-
-      
-            {
-              newTasks.map((task, index) =>{
-                return(
-                  <ul>
-                    <li key={index}>{task}</li>
-                  </ul>  
-                )
-              })
-            } 
         </Grid>
     </Grid>
   )
