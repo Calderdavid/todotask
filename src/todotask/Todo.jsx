@@ -1,5 +1,6 @@
 import { Grid } from "@mui/material"
 import { GetTask } from "./components/GetTask"
+import { Divider } from '@mui/material';
 
 
 export const Todo = () => {
@@ -12,14 +13,16 @@ export const Todo = () => {
         direction="row"
         justifyContent="center"
         alignItems="center"
-        border="1px solid black"
+        border="2px solid black"
+        borderRadius="5px"
     >
     
-        <Grid item xs={4}>
+        <Grid item xs>
           {/* Componente */}
         </Grid>
         
-        
+        <Divider orientation="vertical" flexItem></Divider>
+
         <Grid item 
           xs={8} 
           sx={{mb: 2}}

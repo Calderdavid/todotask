@@ -1,38 +1,57 @@
-import { TextField, Typography } from "@mui/material"
+import { TextField, Typography, Button } from "@mui/material"
 import {useState} from 'react'
+import { useForm } from "../../hooks/useForm"
 import { CheckList } from "./CheckList"
-
+import { useDispatch, useSelector } from "react-redux"
+import { addNewTask } from '../../store/todotask/thunks'
 
 export const GetTask = () => {
-
-    const [newTask, setNewTask] = useState("")
-    const [newTasks, setNewTasks] = useState([])
     
+  const dispatch = useDispatch()
+  const [newTasks, setNewTasks] = useState([{}])
+     
+  const [formValues, onInputChange] = useForm({
+      description: 'new task',
+      category: 'personal'
+  });
+
+  const { description, category } = formValues;
+
+
+  const onSubmit = (e) => {
+      e.preventDefault()
+      dispatch(addNewTask({description, category}))
+  }    
   
-    const handleInputChange = (e) => {
-      setNewTask(e.target.value)
-    }
   
-    const addNewTask = (e) => {
-      const task = e.target.value
-  
-      if (e.key === 'Enter' && newTask != '') {
-        setNewTasks([...newTasks, task])
-        setNewTask("")
-      }  
-    }
 
   return (
     <>
         <Typography variant="h2">TodoTask</Typography>
 
-        <TextField
+        <form onSubmit={onSubmit}>
+          <TextField
+              type="text"
+              label="Enter a new task"
+              name="description"
+              value={description}
+              onChange={onInputChange}
+              // onKeyDown={addNewTask}
+          /> 
+
+          <TextField 
             type="text"
-            label="Enter a new task"
-            value={newTask}
-            onChange={handleInputChange}
-            onKeyDown={addNewTask}
-        /> 
+            label="Type of category"
+            name="category"
+            value={category}
+            sx={{ml: 1}}
+            onChange={onInputChange}
+          />
+
+          <Button type="submit" size="medium" variant="contained" sx={{ml: 1, mt: 1}}>add</Button>
+
+        </form>
+
 
         <CheckList task={newTasks}/>
 

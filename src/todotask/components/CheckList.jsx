@@ -7,6 +7,7 @@ import {
     ListItemText,
     Checkbox,
     IconButton, 
+    Button
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 
@@ -61,7 +62,7 @@ export const CheckList = ({task}) =>{
             disablePadding
           >
             <ListItemButton role={undefined} onClick={handleToggle(value)} dense>
-              <ListItemIcon>
+              <ListItemIcon sx={{mr: 1}}>
                 <Checkbox
                   edge="start"
                   checked={checked.indexOf(value) !== -1}
@@ -70,7 +71,8 @@ export const CheckList = ({task}) =>{
                   inputProps={{ 'aria-labelledby': labelId }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`${value}`} />
+              <ListItemText id={labelId} primary={`${value.description}`} />
+              <Button size="small" variant="contained">{value.category}</Button>
             </ListItemButton>
           </ListItem>
         );
