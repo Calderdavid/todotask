@@ -16,11 +16,11 @@ export const CheckList = ({task}) =>{
   const [checked, setChecked] = useState([]);
   const [newTask, setNewTask] = useState([]);
 
+  // const {description, category} = useSelector(state => state.todotask)
+
   useEffect(() => {
     setNewTask([...task])
   }, [task])
-  
-
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -48,7 +48,9 @@ export const CheckList = ({task}) =>{
   return (
   
     <List sx={{ width: '100%',mt: 2, maxWidth: 360, borderRadius: '5px'}}>
-      {newTask.map((value) => {
+      {
+        
+        newTask.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
 
         return (
@@ -72,7 +74,7 @@ export const CheckList = ({task}) =>{
                 />
               </ListItemIcon>
               <ListItemText id={labelId} primary={`${value.description}`} />
-              <Button size="small" variant="contained">{value.category}</Button>
+              <Button size="small" variant="contained" sx={{backgroundColor: '#EA5959'}}>{value.category}</Button>
             </ListItemButton>
           </ListItem>
         );

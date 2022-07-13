@@ -15,6 +15,7 @@ export const Todo = () => {
         alignItems="center"
         border="2px solid black"
         borderRadius="5px"
+        sx={{backgroundColor: 'white'}}
     >
     
         <Grid item xs>
