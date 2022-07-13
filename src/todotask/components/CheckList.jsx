@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     List,
     ListItem,
@@ -13,8 +13,13 @@ import DeleteIcon from '@mui/icons-material/Delete';
 export const CheckList = ({task}) =>{
 
   const [checked, setChecked] = useState([]);
-  const [newTask, setNewTask] = useState(['test1', 'test2', 'test3']);
+  const [newTask, setNewTask] = useState([]);
+
+  useEffect(() => {
+    setNewTask([...task])
+  }, [task])
   
+
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -65,7 +70,7 @@ export const CheckList = ({task}) =>{
                   inputProps={{ 'aria-labelledby': labelId }}
                 />
               </ListItemIcon>
-              <ListItemText id={labelId} primary={`Line item ${value + 1}`} />
+              <ListItemText id={labelId} primary={`${value}`} />
             </ListItemButton>
           </ListItem>
         );

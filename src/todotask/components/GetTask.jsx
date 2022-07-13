@@ -19,8 +19,7 @@ export const GetTask = () => {
       if (e.key === 'Enter' && newTask != '') {
         setNewTasks([...newTasks, task])
         setNewTask("")
-      }
-  
+      }  
     }
 
   return (
