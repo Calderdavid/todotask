@@ -6,12 +6,15 @@ import {
     ListItemIcon,
     ListItemText,
     Checkbox,
-    IconButton,
-    Icon
+    IconButton, 
 } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export const CheckList = ({task}) =>{
-  const [checked, setChecked] = useState(task);
+
+  const [checked, setChecked] = useState([]);
+  const [newTask, setNewTask] = useState(['test1', 'test2', 'test3']);
+  
 
   const handleToggle = (value) => () => {
     const currentIndex = checked.indexOf(value);
@@ -26,18 +29,28 @@ export const CheckList = ({task}) =>{
     setChecked(newChecked);
   };
 
+  const handleDelete = (value) => () => {
+
+    const currentIndex = newTask.indexOf(value)
+    const cloneList = [...newTask]
+
+    cloneList.splice(currentIndex, 1)
+
+    setNewTask(cloneList)
+  }
+
   return (
   
     <List sx={{ width: '100%',mt: 2, maxWidth: 360, borderRadius: '5px'}}>
-      {task.map((value) => {
+      {newTask.map((value) => {
         const labelId = `checkbox-list-label-${value}`;
 
         return (
           <ListItem
             key={value}
             secondaryAction={
-              <IconButton edge="end" aria-label="comments">
-                <Icon />
+              <IconButton edge="end" aria-label="comments" onClick={handleDelete(value)}>
+                <DeleteIcon/>
               </IconButton>
             }
             disablePadding
@@ -58,4 +71,5 @@ export const CheckList = ({task}) =>{
         );
       })}
     </List>
-)}
+  )
+}

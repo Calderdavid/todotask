@@ -1,5 +1,4 @@
 import { TextField, Typography } from "@mui/material"
-import { nanoid } from 'nanoid'
 import {useState} from 'react'
 import { CheckList } from "./CheckList"
 
@@ -7,7 +6,8 @@ import { CheckList } from "./CheckList"
 export const GetTask = () => {
 
     const [newTask, setNewTask] = useState("")
-    const [newTasks, setNewTasks] = useState(['test1', 'test2', 'test3'])
+    const [newTasks, setNewTasks] = useState([])
+    
   
     const handleInputChange = (e) => {
       setNewTask(e.target.value)
@@ -35,16 +35,6 @@ export const GetTask = () => {
             onKeyDown={addNewTask}
         /> 
 
-        {/* <ul>
-            {
-                newTasks.map((task) =>{
-                    const id = nanoid()
-                    return(
-                        <li key={id}>{task}</li>
-                    )
-                })
-            } 
-        </ul> */}
         <CheckList task={newTasks}/>
 
     </>
