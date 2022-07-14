@@ -1,10 +1,9 @@
 import { Grid } from "@mui/material"
 import { GetTask } from "./components/GetTask"
 import { Divider } from '@mui/material';
-
+import { SideBar } from "./components/SideBar";
 
 export const Todo = () => {
-
   
   return (
     <Grid 
@@ -19,7 +18,7 @@ export const Todo = () => {
     >
     
         <Grid item xs>
-          {/* Componente */}
+          <SideBar />
         </Grid>
         
         <Divider orientation="vertical" flexItem></Divider>

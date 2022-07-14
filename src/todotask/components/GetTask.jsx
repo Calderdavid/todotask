@@ -61,7 +61,7 @@ export const GetTask = () => {
         {
           newTasks.length === 1
           ? 
-          <Typography variant="span" sx={{mt: 2, color: '#eb4d4b', display: 'block' }}>no task assigned yet</Typography>
+          <Typography variant="span" sx={{mt: 2, color: '#eb4d4b', display: 'block', ml: 1 }}>no task assigned yet</Typography>
           :
           <CheckList task={newTasks}/>
         }
